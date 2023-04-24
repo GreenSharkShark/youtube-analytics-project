@@ -35,6 +35,7 @@ class Channel:
         object = build('youtube', 'v3', developerKey=api_key)
         return object
 
+
     @property
     def channel_id(self):
         """
@@ -44,17 +45,15 @@ class Channel:
         return self.__channel_id
 
 
-    @property
-    def to_json(self):
+    def to_json(self, filename):
         """
         Функция для записи инфрмации о канале в json файле. Функция генерирует название файла
         автоматически из названия канала.
         """
         obj = Channel.get_service()
         content = obj.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
-        with open(f'{self.title}.json', 'w') as file:
+        with open(filename, 'w') as file:
             json.dump(content, file)
-
 
 
     def print_info(self) -> None:
