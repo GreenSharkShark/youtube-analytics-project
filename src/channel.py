@@ -26,10 +26,8 @@ class Channel:
         self.video_count = channel['items'][0]['statistics']['videoCount']
         self.view_count = channel['items'][0]['statistics']['viewCount']
 
-
     def __str__(self):
         return f'{self.title} (https://www.youtube.com/{self.url})'
-
 
     def __add__(self, other):
         return int(self.subscribers_count) + int(other.subscribers_count)
@@ -48,9 +46,9 @@ class Channel:
 
     def __le__(self, other):
         return int(self.subscribers_count) <= int(other.subscribers_count)
+
     def __eq__(self, other):
         return int(self.subscribers_count) == int(other.subscribers_count)
-
 
     @classmethod
     def get_service(cls):
@@ -60,7 +58,6 @@ class Channel:
         youtube_object = build('youtube', 'v3', developerKey=api_key)
         return youtube_object
 
-
     @property
     def channel_id(self):
         """
@@ -68,7 +65,6 @@ class Channel:
         :return:
         """
         return self.__channel_id
-
 
     def to_json(self, filename):
         """
@@ -79,7 +75,6 @@ class Channel:
         content = obj.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         with open(filename, 'w') as file:
             json.dump(content, file)
-
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
