@@ -27,13 +27,38 @@ class Channel:
         self.view_count = channel['items'][0]['statistics']['viewCount']
 
 
+    def __str__(self):
+        return f'{self.title} (https://www.youtube.com/{self.url})'
+
+
+    def __add__(self, other):
+        return int(self.subscribers_count) + int(other.subscribers_count)
+
+    def __sub__(self, other):
+        return int(self.subscribers_count) - int(other.subscribers_count)
+
+    def __gt__(self, other):
+        return int(self.subscribers_count) > int(other.subscribers_count)
+
+    def __ge__(self, other):
+        return int(self.subscribers_count) >= int(other.subscribers_count)
+
+    def __lt__(self, other):
+        return int(self.subscribers_count) < int(other.subscribers_count)
+
+    def __le__(self, other):
+        return int(self.subscribers_count) <= int(other.subscribers_count)
+    def __eq__(self, other):
+        return int(self.subscribers_count) == int(other.subscribers_count)
+
+
     @classmethod
     def get_service(cls):
         """
         Создает экземпляр класса
         """
-        object = build('youtube', 'v3', developerKey=api_key)
-        return object
+        youtube_object = build('youtube', 'v3', developerKey=api_key)
+        return youtube_object
 
 
     @property
@@ -47,7 +72,7 @@ class Channel:
 
     def to_json(self, filename):
         """
-        Функция для записи инфрмации о канале в json файле. Функция генерирует название файла
+        Функция для записи информации о канале в json файле. Функция генерирует название файла
         автоматически из названия канала.
         """
         obj = Channel.get_service()

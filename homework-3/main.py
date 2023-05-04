@@ -14,5 +14,4 @@ if __name__ == '__main__':
     print(vdud >= redactsiya)  # True
     print(vdud < redactsiya)  # False
     print(vdud <= redactsiya)  # False
-    print(vdud == redactsiya)  # False
-    
+    print(vdud == redactsiya)  # Falsed
