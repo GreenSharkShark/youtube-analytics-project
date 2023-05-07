@@ -1,15 +1,15 @@
 import os
 import json
+from src.youtube_object_maker import YouTubeObjectMaker
 
 
 from googleapiclient.discovery import build
 
 
+youtube = YouTubeObjectMaker().make_youtube_object()
+
 # API key for YouTube
 api_key: str = os.getenv('YouTube_API')
-
-# специальный объект для работы с API
-youtube = build('youtube', 'v3', developerKey=api_key)
 
 
 class Channel:

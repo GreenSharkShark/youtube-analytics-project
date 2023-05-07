@@ -1,16 +1,9 @@
-import os
+from src.youtube_object_maker import YouTubeObjectMaker
 
 
-from googleapiclient.discovery import build
+youtube = YouTubeObjectMaker().make_youtube_object()
 
 
-# API key for YouTube
-api_key: str = os.getenv('YouTube_API')
-
-# специальный объект для работы с API
-youtube = build('youtube', 'v3', developerKey=api_key)
-
-# комментарии к этому коду будут излишни, я считаю.
 class Video:
     def __init__(self, video_id):
         self.response = youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails', id=video_id).execute()
