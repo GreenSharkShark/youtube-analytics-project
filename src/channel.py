@@ -5,11 +5,8 @@ from src.youtube_object_maker import YouTubeObjectMaker
 
 from googleapiclient.discovery import build
 
-
-youtube = YouTubeObjectMaker().make_youtube_object()
-
 # API key for YouTube
-api_key: str = os.getenv('YouTube_API')
+api_key = os.getenv('YouTube_API')
 
 
 class Channel:
@@ -17,8 +14,9 @@ class Channel:
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
+        self.youtube = YouTubeObjectMaker().make_youtube_object()
         self.__channel_id = channel_id
-        channel = youtube.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
+        channel = self.youtube.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         self.title = channel['items'][0]['snippet']['title']
         self.description = channel['items'][0]['snippet']['localized']['description']
         self.url = channel['items'][0]['snippet']['customUrl']
@@ -55,7 +53,7 @@ class Channel:
         """
         Создает экземпляр класса
         """
-        youtube_object = build('youtube', 'v3', developerKey=api_key)
+        youtube_object = build('__youtube', 'v3', developerKey=api_key)
         return youtube_object
 
     @property
@@ -78,6 +76,5 @@ class Channel:
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
-        channel = youtube.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
-        # print(channel)
+        channel = self.youtube.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         return channel

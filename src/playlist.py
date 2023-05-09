@@ -7,9 +7,9 @@ import isodate
 
 class PlayList:
     def __init__(self, playlist_id):
+        self.__youtube = YouTubeObjectMaker().make_youtube_object()
         self.playlist_id = playlist_id
         self.url = f'https://www.youtube.com/playlist?list={self.playlist_id}'
-        self.__youtube = YouTubeObjectMaker().make_youtube_object()
         self.playlists_info = self.__youtube.playlists().list(part='snippet', id=self.playlist_id).execute()
         self.title = self.playlists_info['items'][0]['snippet']['title']
         self.playlists_videos = self.__youtube.playlistItems().list(playlistId=playlist_id, part='contentDetails',

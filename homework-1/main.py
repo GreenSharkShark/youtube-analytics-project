@@ -6,7 +6,7 @@ if __name__ == '__main__':
 
     """
 {
-  "kind": "youtube#channelListResponse",
+  "kind": "__youtube#channelListResponse",
   "etag": "TUX2o600Qs42JSCO9hckmDv7scY",
   "pageInfo": {
     "totalResults": 1,
@@ -14,7 +14,7 @@ if __name__ == '__main__':
   },
   "items": [
     {
-      "kind": "youtube#channel",
+      "kind": "__youtube#channel",
       "etag": "SsK2QuB-f3WnRrph7tt5yppfuN8",
       "id": "UCMCgOm8GZkHp8zJ6l7_hIuA",
       "snippet": {
