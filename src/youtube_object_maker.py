@@ -8,5 +8,5 @@ class YouTubeObjectMaker:
         self.api_key = os.getenv('YouTube_API')  # API key for YouTube
 
     def make_youtube_object(self):
-        youtube_object = build('__youtube', 'v3', developerKey=self.api_key)
+        youtube_object = build('youtube', 'v3', developerKey=self.api_key)
         return youtube_object

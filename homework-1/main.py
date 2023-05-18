@@ -4,6 +4,7 @@ if __name__ == '__main__':
     vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
     vdud.print_info()
 
+
     """
 {
   "kind": "__youtube#channelListResponse",
@@ -18,7 +19,7 @@ if __name__ == '__main__':
       "etag": "SsK2QuB-f3WnRrph7tt5yppfuN8",
       "id": "UCMCgOm8GZkHp8zJ6l7_hIuA",
       "snippet": {
-        "title": "вДудь",
+        "name": "вДудь",
         "description": "Здесь задают вопросы",
         "customUrl": "@vdud",
         "publishedAt": "2014-01-03T06:27:22Z",
@@ -40,7 +41,7 @@ if __name__ == '__main__':
           }
         },
         "localized": {
-          "title": "вДудь",
+          "name": "вДудь",
           "description": "Здесь задают вопросы"
         }
       },
