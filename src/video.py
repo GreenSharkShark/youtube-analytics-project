@@ -14,10 +14,12 @@ class Video:
             self.view_count = None
             self.like_count = None
         else:
+            if not self.response['items']:
+                raise IndexError('Сервер прислал пустой ответ. Проверьте введенный id.')
             self.title = self.response['items'][0]['snippet']['title']
-            self.link = f'https://www.youtube.com/watch?v=9lO06Zxhu88{video_id}'
             self.view_count = self.response['items'][0]['statistics']['viewCount']
             self.like_count = self.response['items'][0]['statistics']['likeCount']
+            self.link = f'https://www.youtube.com/watch?v=9lO06Zxhu88{video_id}'
 
     def __str__(self):
         return self.title
