@@ -9,13 +9,13 @@ class Video:
             self.response = self.__youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
                                                          id=video_id).execute()
         except HttpError:
+            print('Сервер прислал пустой ответ. Проверьте введенный id.')
+        if not self.response['items']:
             self.title = None
             self.link = None
             self.view_count = None
             self.like_count = None
         else:
-            if not self.response['items']:
-                raise IndexError('Сервер прислал пустой ответ. Проверьте введенный id.')
             self.title = self.response['items'][0]['snippet']['title']
             self.view_count = self.response['items'][0]['statistics']['viewCount']
             self.like_count = self.response['items'][0]['statistics']['likeCount']
